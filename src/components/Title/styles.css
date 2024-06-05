@@ -1,0 +1,24 @@
+.title {
+   margin: 0;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+   animation-duration: 2s;
+   animation-name: gliss;
+  
+ }
+ 
+ @keyframes gliss {
+   from {
+     margin-bottom:100%;
+     width: 100%;
+   }
+ 
+   to {
+     margin-top: 00%;
+     width: 100%;
+   }
+ }
