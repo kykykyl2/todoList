@@ -1,5 +1,6 @@
 .input {
         border: 0;
+        outline: none;
         line-height: 2.5;
         padding: 0 20px;
         font-size: 1rem;
