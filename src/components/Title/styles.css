@@ -13,12 +13,12 @@
  
  @keyframes gliss {
    from {
-     margin-bottom:100%;
+     margin-top:100%;
      width: 100%;
    }
  
    to {
-     margin-top: 00%;
+     margin-bottom: 00%;
      width: 100%;
    }
  }
