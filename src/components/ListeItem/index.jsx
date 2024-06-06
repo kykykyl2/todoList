@@ -1,7 +1,11 @@
 import './styles.css'
 
 const ListeItem = () => (
-    <div>TOTO</div>
+    <div className='liste_item'>
+        <h3>titre</h3>
+        <input type="checkbox" />
+    </div>
+    
 )
 
 export default ListeItem

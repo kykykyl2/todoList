@@ -2,8 +2,40 @@ import './styles.css'
 import ListeItem from '../ListeItem'
 
 const Liste = () => (
-    <div>
+    <div className='list'>
         <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        <ListeItem />
+        
     </div>
 )
 
