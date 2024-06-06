@@ -1,15 +1,11 @@
-.title {
-   margin: 0;
-  font-size: 50px;
-  display: flex;
-  justify-content: center;
-}
+
 
 .title {
+  margin: 0;
+  font-size: 50px;
+  text-align: center;
    animation-duration: 2s;
-   animation-name: gliss;
-  
- }
+   animation-name: gliss; }
  
  @keyframes gliss {
    0% {

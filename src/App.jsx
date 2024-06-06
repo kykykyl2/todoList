@@ -1,7 +1,7 @@
 import Title from './components/Title'
 import Input from './components/Input'
 import Button from './components/Button'
-import Liste from './components/Liste'
+import List from './components/List'
 
 import './App.css'
 
@@ -14,7 +14,7 @@ function App() {
         <Input />
         <Button />
       </div>
-      <Liste />
+      <List />
    </>
   )
 }
