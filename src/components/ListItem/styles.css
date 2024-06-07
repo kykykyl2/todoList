@@ -1,4 +1,4 @@
-.liste_item {
+.list_item {
     border: 0;
     padding: 8px 15px;
     border-radius: 10px;
@@ -10,7 +10,11 @@
       inset -2px -2px 3px rgba(0, 0, 0, 0.6);
     background-color: rgba(0, 0, 0, 1);
     text-shadow: 1px 1px 1px #000;
+    animation-duration: 600ms;
+    animation-name: big;
+    animation-timing-function: ease-in-out;
 }
+
 
 @keyframes big {
     from {
