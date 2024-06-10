@@ -1,0 +1,9 @@
+.list-item-content {}
+
+.list-item-content_title {
+    margin: 0;
+
+    &.checked {
+        text-decoration: line-through;
+    }
+}

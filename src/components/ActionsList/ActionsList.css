@@ -1,0 +1,21 @@
+.list-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.button-delete {
+    background-color: #ff0000;
+}
+
+.button-all {
+
+}
+
+.button-done {
+    background-color: #217e34;
+}
+
+.button-todo {
+    background-color: #4b67e6;
+}

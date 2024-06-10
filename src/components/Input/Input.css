@@ -1,0 +1,18 @@
+.input-label {
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    flex: 1 0 auto;
+}
+
+.input {
+    color: inherit;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    width: 100%;
+}

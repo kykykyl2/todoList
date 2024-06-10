@@ -1,0 +1,15 @@
+.form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* CSS FOR MOBIL L */
+@media(max-width: 425px) {
+    .form {
+        flex-direction: column;
+        align-items: normal;
+    }
+}
