@@ -1,7 +1,30 @@
-import './styles.css'
+import { func, node, number, oneOfType, string } from 'prop-types'
 
-const Button  = () => (
-    <button className="favorite styled" type="button">ajoutez</button>
+import './Button.css'
+
+const Button = ({
+    children = null,
+    className = '',
+    type = 'button',
+    onClick = Function.prototype,
+}) => (
+    <button
+        type={type}
+        className={`button ${className}`}
+        onClick={event => {
+            event.stopPropagation()
+            onClick(event)
+        }}
+    >
+        {children}
+    </button>
 )
 
-export default  Button
+Button.propTypes = {
+    children: oneOfType([string, number, node]),
+    onClick: func,
+    type: string,
+    className: string,
+}
+
+export default Button

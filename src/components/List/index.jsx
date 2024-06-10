@@ -1,39 +1,26 @@
-import './styles.css'
+import { arrayOf, func, objectOf } from 'prop-types'
+
 import ListItem from '../ListItem'
 
-const List = () => (
+import './List.css'
+
+const List = ({ data = [], setData = Function.prototype }) => (
     <div className='list'>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
-        <ListItem/>
+        {data.map(item => (
+            <ListItem
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                isChecked={item.checked}
+                setData={setData}
+            />
+        ))}
     </div>
 )
 
-export default List 
+List.propTypes = {
+    data: arrayOf(objectOf(() => {})),
+    setData: func,
+}
+
+export default List
