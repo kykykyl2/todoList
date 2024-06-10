@@ -3,11 +3,13 @@ import { useState } from 'react'
 
 import Button from '../Button'
 import Input from '../Input'
+import Select from '../Select'
 
 import './AddTodo.css'
 
 const AddTodo = ({ setData = Function.prototype }) => {
     const [title, setTitle] = useState('')
+    const [category, setCategory] = useState('')
 
     const handleChange = event => {
         setTitle(event.target.value)
@@ -16,8 +18,13 @@ const AddTodo = ({ setData = Function.prototype }) => {
     const handleSubmit = event => {
         event.preventDefault()
         // TODO ADD NEW TASK
-        setData(prevState => prevState)
+        setData(prevState =>
+            title
+                ? [{ id: Math.random(), title, category }, ...prevState]
+                : prevState,
+        )
         setTitle('')
+        setCategory('')
     }
 
     return (
@@ -28,6 +35,7 @@ const AddTodo = ({ setData = Function.prototype }) => {
                 value={title}
                 placeholder='Nom de la tâche'
             />
+            <Select category={category} setCategory={setCategory} />
             <Button type='submit'>Ajouter</Button>
         </form>
     )

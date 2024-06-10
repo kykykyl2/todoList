@@ -1,9 +1,14 @@
-.list-item-content {}
+.list-item-content {
+    gap: 0.7em;
+    display: grid;
+}
 
 .list-item-content_title {
     margin: 0;
-
     &.checked {
         text-decoration: line-through;
     }
+}
+
+.list-item-content_category {
 }

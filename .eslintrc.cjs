@@ -16,7 +16,6 @@ module.exports = {
     'arrow-body-style': ['error', 'as-needed'],
     curly: ['error', 'all'],
     eqeqeq: 'error',
-    'linebreak-style': ['error', 'unix'],
     'no-console': 'off',
     'padding-line-between-statements': [
       'error',

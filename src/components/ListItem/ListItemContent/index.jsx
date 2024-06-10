@@ -21,11 +21,14 @@ const ListItemContent = ({
                 isAutoFocus
             />
         ) : (
-            <h3
-                className={`list-item-content_title${isCheckedTask ? ' checked' : ''}`}
-            >
-                {titleTask}
-            </h3>
+            <>
+                <h3
+                    className={`list-item-content_title${isCheckedTask ? ' checked' : ''}`}
+                >
+                    {titleTask}
+                </h3>
+                <span className='list-item-content_category'>Catégorie</span>
+            </>
         )}
     </div>
 )
