@@ -1,51 +1,38 @@
-import { func, string } from 'prop-types'
+import { array, func, number } from 'prop-types'
 
 import './Select.css'
 
-const optionsList = [
-    {
-        id: 0,
-        optionLabel: 'Travail',
-    },
-    {
-        id: 1,
-        optionLabel: 'Travaux',
-    },
-    {
-        id: 2,
-        optionLabel: 'Course',
-    },
-    {
-        id: 3,
-        optionLabel: 'Enfant',
-    },
-    {
-        id: 4,
-        optionLabel: 'École',
-    },
-]
-
-const Select = ({ category = '', setCategory = Function.prototype }) => (
+const Select = ({
+    categories = [],
+    setIdCategory = Function.prototype,
+    idCategory = null,
+}) => (
     <select
         className='select'
-        value={category}
-        onChange={event => setCategory(event.target.value)}
+        value={
+            idCategory !== null
+                ? categories.find(x => x.id_categorie === idCategory)
+                      .id_categorie
+                : null
+        }
+        onChange={event => setIdCategory(event.target.value)}
     >
-        {optionsList.map(option => (
+        {categories.map(option => (
             <option
                 className='select_option'
-                key={option.id}
-                value={option.optionLabel}
+                key={option.id_categorie}
+                value={option.id_categorie}
             >
-                {option.optionLabel}
+                {option.nom_categorie}
             </option>
         ))}
     </select>
 )
 
 Select.propTypes = {
-    category: string,
-    setCategory: func,
+    categories: array,
+    setIdCategory: func,
+    idCategory: number,
 }
 
 export default Select

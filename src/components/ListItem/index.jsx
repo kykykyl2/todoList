@@ -1,4 +1,4 @@
-import { bool, func, number, oneOfType, string } from 'prop-types'
+import { bool, func, number, object, oneOfType, string } from 'prop-types'
 import { useEffect, useState } from 'react'
 
 import IconButton from '../IconButton'
@@ -6,15 +6,11 @@ import IconButton from '../IconButton'
 import './ListItem.css'
 import ListItemActions from './ListItemActions'
 import ListItemContent from './ListItemContent/index.jsx'
+import axios from 'axios'
 
-const ListItem = ({
-    id = '',
-    isChecked = false,
-    title = '',
-    setData = Function.prototype,
-}) => {
-    const [titleTask, setTitleTask] = useState(title)
-    const [isCheckedTask, setIsCheckedTask] = useState(isChecked)
+const ListItem = ({ item = {}, setData = Function.prototype }) => {
+    const [titleTask, setTitleTask] = useState(item.nom_tache)
+    const [isCheckedTask, setIsCheckedTask] = useState(item._check)
     const [isEditTask, setIsEditTask] = useState(false)
     const [isSendTitle, setIsSendTitle] = useState(false)
 
@@ -43,27 +39,34 @@ const ListItem = ({
         }
     }
 
-    const handleClickDelete = () => {
+    const handleClickDelete = id => {
         // TODO SEND DELETE TASK
-        setData(prevState => prevState.filter(item => item.id !== id))
+        axios.delete('http://localhost:3000/todos/' + id).then(() => {
+            setData(prevState => prevState.filter(x => x.id !== id))
+        })
     }
 
     useEffect(() => {
         if (isSendTitle) {
+            axios
+                .put('http://localhost:3000/todos/' + item.id, {
+                    nom_tache: titleTask,
+                })
+                .then(() => {
+                    console.log('a été modifier')
+                })
             // TODO SEND NEW TITLE
             console.log('Envoi du nouveau titre')
             setIsSendTitle(false)
         }
-    }, [isSendTitle])
+    }, [isSendTitle, item])
 
     useEffect(() => {
         // TODO SEND CHECKED TASK
-        console.log(`Tâche ${isCheckedTask ? 'terminer' : 'en cour'}`)
-        setData(prevState => {
-            console.log('toto', prevState[id])
-
-            return prevState
+        axios.put('http://localhost:3000/todos/' + item.id, {
+            _check: isCheckedTask,
         })
+        console.log(`Tâche ${isCheckedTask ? 'terminer' : 'en cour'}`)
     }, [isCheckedTask])
 
     return (
@@ -86,7 +89,7 @@ const ListItem = ({
                 isEditTask={isEditTask}
                 isCheckedTask={isCheckedTask}
                 handleClickEdit={handleClickEdit}
-                handleClickDelete={handleClickDelete}
+                handleClickDelete={() => handleClickDelete(item.id)}
             />
         </div>
     )
@@ -97,6 +100,7 @@ ListItem.propTypes = {
     isChecked: bool,
     title: oneOfType([string, number]),
     setData: func,
+    item: object,
 }
 
 export default ListItem

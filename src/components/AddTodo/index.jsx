@@ -1,15 +1,23 @@
-import { func } from 'prop-types'
-import { useState } from 'react'
+import { bool, func } from 'prop-types'
+import { useEffect, useState } from 'react'
 
 import Button from '../Button'
 import Input from '../Input'
 import Select from '../Select'
 
 import './AddTodo.css'
+import axios from 'axios'
 
-const AddTodo = ({ setData = Function.prototype }) => {
+const AddTodo = ({ setReload = Function.prototype, reload }) => {
     const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('')
+    const [idCategory, setIdCategory] = useState(null)
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:3000/categories')
+            .then(res => setCategories(res.data))
+    }, [])
 
     const handleChange = event => {
         setTitle(event.target.value)
@@ -18,13 +26,20 @@ const AddTodo = ({ setData = Function.prototype }) => {
     const handleSubmit = event => {
         event.preventDefault()
         // TODO ADD NEW TASK
-        setData(prevState =>
-            title
-                ? [{ id: Math.random(), title, category }, ...prevState]
-                : prevState,
-        )
+        axios
+            .post('http://localhost:3000/todos', {
+                title,
+                idCategory,
+            })
+            .then(function () {
+                setReload(!reload)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+
         setTitle('')
-        setCategory('')
+        setIdCategory(null)
     }
 
     return (
@@ -35,14 +50,16 @@ const AddTodo = ({ setData = Function.prototype }) => {
                 value={title}
                 placeholder='Nom de la tâche'
             />
-            <Select category={category} setCategory={setCategory} />
+            <Select categories={categories} setIdCategory={setIdCategory} />
             <Button type='submit'>Ajouter</Button>
         </form>
     )
 }
 
 AddTodo.propTypes = {
+    reload: bool,
     setData: func,
+    setReload: func,
 }
 
 export default AddTodo

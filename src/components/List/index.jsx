@@ -6,15 +6,11 @@ import './List.css'
 
 const List = ({ data = [], setData = Function.prototype }) => (
     <div className='list'>
-        {data.map(item => (
-            <ListItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                isChecked={item.checked}
-                setData={setData}
-            />
-        ))}
+        {data
+            .filter(x => x.isDisplayed)
+            .map(item => (
+                <ListItem key={item.id} item={item} setData={setData} />
+            ))}
     </div>
 )
 
