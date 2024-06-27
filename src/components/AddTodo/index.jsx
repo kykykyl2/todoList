@@ -10,8 +10,10 @@ import axios from 'axios'
 
 const AddTodo = ({ setReload = Function.prototype, reload }) => {
     const [title, setTitle] = useState('')
-    const [idCategory, setIdCategory] = useState(null)
+    const [idCategory, setIdCategory] = useState(0)
     const [categories, setCategories] = useState([])
+
+    console.log(idCategory, categories)
 
     useEffect(() => {
         axios
@@ -50,7 +52,11 @@ const AddTodo = ({ setReload = Function.prototype, reload }) => {
                 value={title}
                 placeholder='Nom de la tâche'
             />
-            <Select categories={categories} setIdCategory={setIdCategory} />
+            <Select
+                className='Select'
+                categories={categories}
+                setIdCategory={setIdCategory}
+            />
             <Button type='submit'>Ajouter</Button>
         </form>
     )

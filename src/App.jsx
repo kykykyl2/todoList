@@ -29,8 +29,13 @@ const App = () => {
                     setReload={setReload}
                     reload={reload}
                 />
-                <ActionsList data={data} setData={setData} reload={reload} />
-                <List data={data} setData={setData} />
+                <ActionsList data={data} setData={setData} />
+                <List
+                    data={data}
+                    setData={setData}
+                    reload={reload}
+                    setReload={setReload}
+                />
             </main>
         </div>
     )

@@ -8,7 +8,12 @@ import ListItemActions from './ListItemActions'
 import ListItemContent from './ListItemContent/index.jsx'
 import axios from 'axios'
 
-const ListItem = ({ item = {}, setData = Function.prototype }) => {
+const ListItem = ({
+    item = {},
+    setData = Function.prototype,
+    setReload = Function.prototype,
+    reload,
+}) => {
     const [titleTask, setTitleTask] = useState(item.nom_tache)
     const [isCheckedTask, setIsCheckedTask] = useState(item._check)
     const [isEditTask, setIsEditTask] = useState(false)
@@ -60,14 +65,18 @@ const ListItem = ({ item = {}, setData = Function.prototype }) => {
             setIsSendTitle(false)
         }
     }, [isSendTitle, item])
-
     useEffect(() => {
         // TODO SEND CHECKED TASK
-        axios.put('http://localhost:3000/todos/' + item.id, {
-            _check: isCheckedTask,
-        })
+        axios
+            .put('http://localhost:3000/todos/' + item.id, {
+                _check: isCheckedTask,
+            })
+            .then(() => {
+                setReload(!reload)
+            })
         console.log(`Tâche ${isCheckedTask ? 'terminer' : 'en cour'}`)
     }, [isCheckedTask])
+    console.log(item)
 
     return (
         <div className={`list-item${isCheckedTask ? ' done' : ''}`}>
@@ -82,6 +91,7 @@ const ListItem = ({ item = {}, setData = Function.prototype }) => {
                 isEditTask={isEditTask}
                 isCheckedTask={isCheckedTask}
                 titleTask={titleTask}
+                categories={item.Category.nom_categorie}
                 handleChange={handleChange}
                 handleKeyDown={handleKeyDown}
             />
@@ -101,6 +111,8 @@ ListItem.propTypes = {
     title: oneOfType([string, number]),
     setData: func,
     item: object,
+    setReload: func,
+    reload: bool,
 }
 
 export default ListItem

@@ -11,5 +11,6 @@
 }
 
 .list-item-content_category {
-    color: aliceblue;
+    color: inherit;
+    margin: 3px;
 }

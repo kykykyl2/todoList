@@ -6,6 +6,7 @@ import './ListItemContent.css'
 
 const ListItemContent = ({
     titleTask = '',
+    categories = '',
     isEditTask = false,
     isCheckedTask = false,
     handleChange,
@@ -27,13 +28,14 @@ const ListItemContent = ({
                 >
                     {titleTask}
                 </h3>
-                <span className='list-item-content_category'>Catégorie</span>
+                <span className='list-item-content_category'>{categories}</span>
             </>
         )}
     </div>
 )
 
 ListItemContent.propTypes = {
+    categories: string,
     titleTask: string,
     isEditTask: bool,
     isCheckedTask: bool,
